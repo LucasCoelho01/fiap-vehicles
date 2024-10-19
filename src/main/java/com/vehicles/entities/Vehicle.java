@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "vehicles")
-public class Vehicle implements Serializable {
+public class Vehicle implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -34,8 +34,5 @@ public class Vehicle implements Serializable {
         this.vehicleColor = createVehicleDTO.color();
         this.vehicleStatus = createVehicleDTO.status();
         this.vehiclePrice = createVehicleDTO.price();
-    }
-
-    public Vehicle(UpdateVehicleDTO updateVehicleDTO) {
     }
 }
