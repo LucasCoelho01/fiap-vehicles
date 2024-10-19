@@ -4,6 +4,7 @@ import com.vehicles.entities.Vehicle;
 import com.vehicles.entities.dtos.CreateVehicleDTO;
 import com.vehicles.entities.dtos.UpdateVehicleDTO;
 import com.vehicles.repositories.VehicleRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,23 +33,29 @@ public class VehicleService {
     }
 
     @Transactional
-    public Vehicle updateVehicle(UpdateVehicleDTO updateVehicleDTO, String vehicleId) throws Exception {
+    public Optional<Vehicle> updateVehicle(String vehicleId, UpdateVehicleDTO updateVehicleDTO) throws Exception {
         var vehicle = getVehicleById(vehicleId);
 
-
         if (vehicle.isPresent()) {
-            var updatedVehicle = new Vehicle(updateVehicleDTO);
+            vehicle.get().setVehicleBrand(updateVehicleDTO.vehicleBrand());
+            vehicle.get().setVehicleColor(updateVehicleDTO.vehicleColor());
+            vehicle.get().setVehicleModel(updateVehicleDTO.vehicleModel());
+            vehicle.get().setVehiclePrice(updateVehicleDTO.vehiclePrice());
+            vehicle.get().setVehicleStatus(updateVehicleDTO.vehicleStatus());
+            vehicle.get().setVehicleYear(updateVehicleDTO.vehicleYear());
 
-            return vehicleRepository.save(updatedVehicle);
+            Vehicle updatedVehicle = vehicle.get();
+
+            vehicleRepository.save(updatedVehicle);
         } else {
             new Exception("Vehicle not found");
         }
 
-        return new Vehicle();
+        return vehicle;
     }
 
     public List<Vehicle> listVehiclesForSaleSortedByPrice() {
-        var allVehicles = listVehicles();
+        var allVehicles = vehicleRepository.findAllByOrderByVehiclePriceAsc();
         var vehiclesForSale = new ArrayList<Vehicle>();
 
         allVehicles.forEach(vehicle -> {
@@ -61,7 +68,7 @@ public class VehicleService {
     }
 
     public List<Vehicle> listSoldVehiclesSortedByPrice() {
-        var allVehicles = listVehicles();
+        var allVehicles = vehicleRepository.findAllByOrderByVehiclePriceAsc();
         var soldVehicles = new ArrayList<Vehicle>();
 
         allVehicles.forEach(vehicle -> {
