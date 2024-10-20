@@ -4,7 +4,6 @@ import com.vehicles.entities.Vehicle;
 import com.vehicles.entities.dtos.CreateVehicleDTO;
 import com.vehicles.entities.dtos.UpdateVehicleDTO;
 import com.vehicles.repositories.VehicleRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
