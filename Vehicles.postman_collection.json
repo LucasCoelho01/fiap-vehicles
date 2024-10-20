@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "2a645136-e215-401d-ba0e-5d97afb798bd",
+		"name": "Vehicles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24275120"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"lucas@email.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8081/api/login"
+					},
+					"response": []
+				},
+				{
+					"name": "List all users",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8081/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"lucas@email.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8081/api/users"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create vehicle",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWNhc0BlbWFpbC5jb20iLCJpc3MiOiJsdWNhcyIsImV4cCI6MTcyOTQ2Mzg3MX0.uz824hE3BPEBen6hGv2N-kdq59hLBcMUM_InT5geX00"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"brand\": \"Citroen\",\r\n  \"model\": \"C4\",\r\n  \"year\": \"2022\",\r\n  \"color\": \"Branco\",\r\n  \"status\": \"à venda\",\r\n  \"price\": 50000.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{env}}/api/vehicles"
+			},
+			"response": []
+		},
+		{
+			"name": "Update vehicle",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"brand\": \"Citroen\",\r\n  \"model\": \"C4\",\r\n  \"year\": \"2022\",\r\n  \"color\": \"Branco\",\r\n  \"status\": \"à venda\",\r\n  \"price\": 50000.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{env}}/api/vehicles/id"
+			},
+			"response": []
+		},
+		{
+			"name": "List all vehicles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmFAZW1haWwuY29tIiwiaXNzIjoiaGFja2F0aG9uIiwiZXhwIjoxNzI5NDM3NDU0fQ.XZp2629pyyprcI3CRyJgLYPnrEeqW3RJ1VHUsfJ-iZU"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{env}}/api/vehicles"
+			},
+			"response": []
+		},
+		{
+			"name": "List Sold Vehicles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWNhc0BlbWFpbC5jb20iLCJpc3MiOiJsdWNhcyIsImV4cCI6MTcyOTQ0MDM4MH0.aFa1oqY6iBQx0oLpDSD7cNDqtpPchjFl6vdBNKdBf5U"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{env}}/api/vehicles/sold-vehicles"
+			},
+			"response": []
+		},
+		{
+			"name": "List Vehicles For Sale",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{env}}/api/vehicles/vehicles-for-sale"
+			},
+			"response": []
+		}
+	]
+}
