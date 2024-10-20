@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+
+  postgres-db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+  fiap-vehicles-api:
+    image: lucasgoleiro/fiap-vehicles
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres-db
+  users-manager-api:
+    image: lucasgoleiro/users-manager
+    ports:
+      - 8081:8081
+    depends_on:
+      - postgres-db
