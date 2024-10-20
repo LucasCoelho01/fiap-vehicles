@@ -15,7 +15,7 @@ public class TokenService {
         try {
             var algoritmo = Algorithm.HMAC256(secret);
             return JWT.require(algoritmo)
-                    .withIssuer("hackathon")
+                    .withIssuer("lucas")
                     .build()
                     .verify(tokenJWT)
                     .getSubject();
